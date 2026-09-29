@@ -1,0 +1,29 @@
+# dn(n) simulates normal subgroups of size \(n\), calculates their ranges, and produces range-chart constants such as \(d_2,d_3,D_3,D_4\).
+# bn(n) simulates normal subgroups of size \(n\), calculates their standard deviations, and produces constants such as \(C_4,A_3,B_3,B_4\).
+# ggprocess() creates an exploratory overview with raw observations, subgroup boxplots, a grand mean, summary statistics, and—when supported—a sideways histogram. It is not a formal control chart.
+# ggs() creates the standard-deviation control chart.
+# ggr() creates the range control chart.
+
+# Import pandas for working with the dataset
+import pandas as pd
+
+# -------------------------------------------------------
+# 1. Load the course's process-control helper functions
+# -------------------------------------------------------
+
+# exec() runs the helper file.
+# After this line, functions such as ggprocess(), ggxbar(),
+# ggs(), and ggr() become available.
+exec(open("functions/functions_process_control.py").read())
+
+
+# -------------------------------------------------------
+# 2. Load and inspect the onsen dataset
+# -------------------------------------------------------
+
+water = pd.read_csv("workshops/onsen.csv")
+
+metric = "temp"
+ggxbar(x=water["time"], y=water[metric])
+ggs(x=water["time"], y=water[metric])
+ggr(x=water["time"], y=water[metric])
